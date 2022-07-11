@@ -1,0 +1,54 @@
+{
+  "frameworks": [
+    {
+      "id": 1,
+      "type": "React"
+    },
+    {
+      "id": 2,
+      "type": "Angular"
+    },
+    {
+      "id": 3,
+      "type": "Vue"
+    }
+  ],
+  "status": [
+    {
+      "id": 1,
+      "type": "Solicitado"
+    },
+    {
+      "id": 2,
+      "type": "Pago"
+    },
+    {
+      "id": 3,
+      "type": "Encaminhado"
+    },
+    {
+      "id": 4,
+      "type": "Entregue"
+    }
+  ],
+  "orders": [
+    {
+      "frameworks": [
+        "React",
+        "Angular"
+      ],
+      "amount": 5,
+      "comment": "Nada",
+      "id": 1
+    },
+    {
+      "frameworks": [
+        "React",
+        "Vue"
+      ],
+      "amount": 3,
+      "comment": "hehehehe",
+      "id": 2
+    }
+  ]
+}
