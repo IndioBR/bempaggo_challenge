@@ -6,13 +6,13 @@
         <ul>
           <li v-for="frmw in data.frameworks" :key="frmw.id">
             <strong>{{ data.amount }}</strong
-            >x {{ frmw }}
+            >x {{ frmw.type }}
           </li>
         </ul>
       </div>
       <div class="order-value">
         <span>Valor:</span>
-        <span>R$ {{ this.data.amount * this.data.frameworks.length }},00</span>
+        <span>R$ {{ this.fixValue(this.data.value) }}</span>
       </div>
     </div>
   </div>
@@ -23,6 +23,11 @@ export default {
   name: "OrderResume",
   props: {
     data: Object,
+  },
+  methods: {
+    fixValue(value) {
+      return String((value / 100).toFixed(2)).replace(".", ",");
+    },
   },
 };
 </script>
@@ -35,7 +40,7 @@ export default {
   color: #fff;
   height: 200px;
   padding: 25px;
-  border-radius: 15px 15px 50% 50%;
+  border-radius: 0px 0px 50% 50%;
 }
 
 ul {

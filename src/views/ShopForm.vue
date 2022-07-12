@@ -10,9 +10,9 @@
               <input
                 type="checkbox"
                 :name="fwk.type"
-                :value="fwk.type"
+                :value="fwk"
                 :id="fwk.id"
-                v-model="fwksChosen"
+                v-model="this.fwksChosen"
               />
               <strong>{{ fwk.type }}</strong>
             </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import ShopFormTitle from "./ShopFormTitle.vue";
+import ShopFormTitle from "../components/ShopFormTitle.vue";
 export default {
   name: "ShopForm",
   emits: "orderMade",
@@ -51,6 +51,7 @@ export default {
       fwks: [],
       comment: null,
       fwksChosen: [],
+      total: 0,
     };
   },
   methods: {
@@ -71,15 +72,21 @@ export default {
 
       this.amount = this.amount - 1;
     },
+    getSum(price, qntd) {
+      return price * qntd;
+    },
     async submitOrder(e) {
       e.preventDefault();
+      this.fwksChosen.forEach(
+        (f) => (this.total += this.getSum(f.price, this.amount))
+      );
       const data = {
-        frameworks: Array.from(this.fwksChosen),
+        status: "Solicitado",
         amount: this.amount,
         comment: this.comment,
-        status: "Solicitado",
+        value: this.total,
+        frameworks: Array.from(this.fwksChosen),
       };
-
       const dataJson = JSON.stringify(data);
 
       const req = await fetch("http://localhost:3000/orders", {
@@ -160,35 +167,5 @@ p {
   border: 1px solid #858caf;
   border-radius: 10px;
   resize: none;
-}
-
-.submit-btn {
-  width: 100%;
-  height: 90px;
-  bottom: 0;
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  background-color: #dde3e9;
-  padding: 25px 30px;
-}
-
-.submit-btn input {
-  all: unset;
-  font-family: "Roboto", sans-serif;
-  padding: 7px 40px;
-  color: #ffffff;
-  font-weight: bold;
-  background-color: #2f3676;
-  border-radius: 7px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.submit-btn input:hover {
-  background-color: transparent;
-  color: #222;
-  border: 1px solid #2f3676;
 }
 </style>

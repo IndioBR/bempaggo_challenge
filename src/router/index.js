@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import ShopForm from "../components/ShopForm.vue";
-import CheckoutForm from "../components/CheckoutForm.vue";
+import ShopForm from "../views/ShopForm.vue";
+import CheckoutForm from "../views/CheckoutForm.vue";
 
 const routes = [
   {

@@ -2,15 +2,18 @@
   "frameworks": [
     {
       "id": 1,
-      "type": "React"
+      "type": "React",
+      "price": 1000
     },
     {
       "id": 2,
-      "type": "Angular"
+      "type": "Angular",
+      "price": 1500
     },
     {
       "id": 3,
-      "type": "Vue"
+      "type": "Vue",
+      "price": 1000
     }
   ],
   "status": [
@@ -33,31 +36,53 @@
   ],
   "orders": [
     {
-      "frameworks": [
-        "React",
-        "Angular"
-      ],
+      "status": "Solicitado",
       "amount": 5,
-      "comment": "Nada",
-      "id": 1
-    },
-    {
+      "comment": "Embrulhar bem!",
+      "value": 10000,
       "frameworks": [
-        "React",
-        "Vue"
+        {
+          "id": 1,
+          "type": "React",
+          "price": 1000
+        },
+        {
+          "id": 3,
+          "type": "Vue",
+          "price": 1000
+        }
       ],
-      "amount": 3,
-      "comment": "hehehehe",
-      "id": 2
+      "id": 1
     }
   ],
   "payments": [
     {
-      "full_name": "jonatas ximenez silva",
-      "identifier": "55555555555",
-      "date": "2022-07-11T22:29:28.052Z",
-      "value": 1000,
+      "date": "2022-07-12T14:51:24.536Z",
+      "order_id": 1,
+      "value": 10000,
+      "full_name": "",
+      "cpf_cnpj": "",
+      "email": "",
+      "phone": "",
+      "cep": "",
+      "address": "",
+      "number": "",
+      "city": "",
       "id": 1
+    },
+    {
+      "date": "2022-07-12T14:51:44.877Z",
+      "order_id": 1,
+      "value": 10000,
+      "full_name": "",
+      "cpf_cnpj": "",
+      "email": "",
+      "phone": "",
+      "cep": "",
+      "address": "",
+      "number": "",
+      "city": "",
+      "id": 2
     }
   ]
 }
