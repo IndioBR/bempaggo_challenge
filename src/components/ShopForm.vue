@@ -77,7 +77,7 @@ export default {
         frameworks: Array.from(this.fwksChosen),
         amount: this.amount,
         comment: this.comment,
-        status: "Ordered",
+        status: "Solicitado",
       };
 
       const dataJson = JSON.stringify(data);

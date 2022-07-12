@@ -50,5 +50,14 @@
       "comment": "hehehehe",
       "id": 2
     }
+  ],
+  "payments": [
+    {
+      "full_name": "jonatas ximenez silva",
+      "identifier": "55555555555",
+      "date": "2022-07-11T22:29:28.052Z",
+      "value": 1000,
+      "id": 1
+    }
   ]
 }
