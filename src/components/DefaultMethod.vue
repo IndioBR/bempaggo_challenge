@@ -3,25 +3,25 @@
     <form @submit="submitPayment">
       <div class="checkout-asides">
         <div class="checkout-aside">
-          <InputCheckout
+          <InputCheckoutReq
             id="input-full-name"
             name="full_name"
             type="text"
             label="Nome Completo"
           />
-          <InputCheckout
+          <InputCheckoutReq
             id="input-cpf-cnpj"
             name="cpf-cnpj"
             type="number"
             label="CPF/CNPJ"
           />
-          <InputCheckout
+          <InputCheckoutReq
             id="input-email"
             name="email"
             type="email"
             label="Email"
           />
-          <InputCheckout
+          <InputCheckoutReq
             id="input-phone"
             name="phone"
             type="text"
@@ -59,6 +59,8 @@
 
 <script>
 import InputCheckout from "./InputCheckout.vue";
+import InputCheckoutReq from "./InputCheckoutRequired.vue";
+
 export default {
   name: "DefaultMethod",
   data() {
@@ -73,12 +75,15 @@ export default {
   emits: ["paidModal", "failModal"],
   components: {
     InputCheckout,
+    InputCheckoutReq,
   },
   methods: {
     async submitPayment(e) {
       e.preventDefault();
       try {
         const submitData = {
+          method: "boleto",
+          status: "Pago",
           date: new Date(),
           order_id: this.orderData.id,
           value: this.orderData.value,
@@ -92,14 +97,12 @@ export default {
           city: e.target[7].value,
         };
         const dataJson = JSON.stringify(submitData);
-        const req = await fetch("http://localhost:3000/payments", {
+
+        await fetch("http://localhost:3000/payments", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: dataJson,
         });
-
-        const res = await req.json();
-        console.log(res);
 
         this.$emit("paidModal");
       } catch (error) {

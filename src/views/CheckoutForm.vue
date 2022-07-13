@@ -2,11 +2,13 @@
   <div id="checkout-container">
     <OrderResume :data="order" />
     <PaymentMethod />
-    <DefaultMethod
+    <!-- <DefaultMethod
       :orderData="order"
       @paid-modal="paidModal"
       @fail-modal="failModal"
-    />
+    /> 
+    <CardMethod :orderData="order" />-->
+    <PixMethod :orderData="order" />
     <PaidModal v-show="paid" />
     <FailModal v-show="fail" />
   </div>
@@ -14,18 +16,22 @@
 
 <script>
 import OrderResume from "../components/OrderResume.vue";
-import DefaultMethod from "../components/DefaultMethod.vue";
+// import DefaultMethod from "../components/DefaultMethod.vue";
 import PaymentMethod from "../components/PaytmentMethod.vue";
+import PixMethod from "../components/PixMethod.vue";
 import PaidModal from "../components/PaidModal.vue";
 import FailModal from "../components/FailModal.vue";
+// import CardMethod from "../components/CardMethod.vue";
 export default {
   name: "CheckoutForm",
   components: {
     OrderResume,
-    DefaultMethod,
+    // DefaultMethod,
     PaymentMethod,
     PaidModal,
     FailModal,
+    // CardMethod,
+    PixMethod,
   },
   data() {
     return {

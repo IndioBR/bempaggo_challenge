@@ -53,6 +53,25 @@
         }
       ],
       "id": 1
+    },
+    {
+      "status": "Solicitado",
+      "amount": 4,
+      "comment": null,
+      "value": 10000,
+      "frameworks": [
+        {
+          "id": 1,
+          "type": "React",
+          "price": 1000
+        },
+        {
+          "id": 2,
+          "type": "Angular",
+          "price": 1500
+        }
+      ],
+      "id": 2
     }
   ],
   "payments": [
