@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import ShopForm from "../views/ShopForm.vue";
 import CheckoutForm from "../views/CheckoutForm.vue";
+import PageNotFound from "../views/PageNotFound.vue";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/checkout/:id",
     name: "Checkout",
     component: CheckoutForm,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: PageNotFound,
   },
 ];
 
