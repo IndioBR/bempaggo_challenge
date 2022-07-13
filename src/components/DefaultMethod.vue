@@ -83,7 +83,6 @@ export default {
       try {
         const submitData = {
           method: "boleto",
-          status: "Pago",
           date: new Date(),
           order_id: this.orderData.id,
           value: this.orderData.value,
@@ -102,6 +101,18 @@ export default {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: dataJson,
+        });
+
+        const paidOrder = {
+          status: "Pago",
+        };
+
+        const paidJson = JSON.stringify(paidOrder);
+
+        await fetch(`http://localhost:3000/orders/${this.orderData.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: paidJson,
         });
 
         this.$emit("paidModal");

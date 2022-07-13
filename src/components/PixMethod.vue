@@ -1,17 +1,16 @@
 <template>
   <div id="pix-method">
-    <div class="">
-      <img src="" alt="" />
+    <div class="pix-title">
       <h1>Pague com pix</h1>
     </div>
-    <div>
+    <div class="pix-container">
       <p>
         Pague com PIX e aproveite até 15% OFF. Nessa modalidade, seu pedido é
         aprovado instantaneamente, o que torna a expedição do seu pedido ainda
         mais rápida.
       </p>
+      <span>O que você precisa saber antes de pagar por PIX:</span>
       <ul>
-        O que você precisa saber antes de pagar por PIX:
         <li>É necessário possuir uma chave PIX cadastrada no seu Banco;</li>
         <li>
           Com o seu celular, basta escanear o QR Code ou copiar o código para
@@ -27,6 +26,8 @@
           Atendimento ou APP. O prazo de liberação é de até 48h.
         </li>
       </ul>
+    </div>
+    <div class="show-qr">
       <button @click="this.payPix()">Mostrar Qr Code</button>
     </div>
     <div class="qr-code" v-show="showPix">
@@ -40,7 +41,7 @@ export default {
   name: "PixMethod",
   data() {
     return {
-      showPix: true,
+      showPix: false,
     };
   },
   props: {
@@ -53,7 +54,7 @@ export default {
     },
     getQr() {
       const str = `O valor pago é de R$ ${this.fixValue(this.orderData.value)}`;
-      return `https://api.qrserver.com/v1/create-qr-code/?data=${str}&size=900x900`;
+      return `https://api.qrserver.com/v1/create-qr-code/?data=${str}&size=700x700`;
     },
     close() {
       this.showPix = false;
@@ -63,7 +64,6 @@ export default {
       try {
         const submitData = {
           method: "pix",
-          status: "Pago",
           date: new Date(),
           order_id: this.orderData.id,
           value: this.orderData.value * 0.15,
@@ -74,6 +74,18 @@ export default {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: dataJson,
+        });
+
+        const paidOrder = {
+          status: "Pago",
+        };
+
+        const paidJson = JSON.stringify(paidOrder);
+
+        await fetch(`http://localhost:3000/orders/${this.orderData.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: paidJson,
         });
 
         this.$emit("paidModal");
@@ -90,6 +102,49 @@ export default {
   padding: 35px;
 }
 
+.pix-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.pix-container {
+  border-left: 1px solid rgba(40, 59, 226, 0.5);
+  padding: 35px;
+}
+
+.pix-container p {
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.pix-container span {
+  text-decoration: underline;
+}
+
+.pix-container li {
+  list-style: none;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.show-qr {
+  width: 97%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-qr button {
+  all: unset;
+  padding: 25px 50px;
+  background-color: rgba(40, 59, 226, 0.5);
+  border-radius: 15px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .qr-code {
   position: absolute;
   top: 0;
@@ -102,5 +157,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+img {
+  cursor: pointer;
 }
 </style>

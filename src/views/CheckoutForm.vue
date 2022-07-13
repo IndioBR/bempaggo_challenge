@@ -1,14 +1,19 @@
 <template>
   <div id="checkout-container">
     <OrderResume :data="order" />
-    <PaymentMethod />
-    <!-- <DefaultMethod
+    <PaymentMethod
+      @method-boleto="methodBoleto"
+      @method-card="methodCard"
+      @method-pix="methodPix"
+    />
+    <DefaultMethod
       :orderData="order"
       @paid-modal="paidModal"
       @fail-modal="failModal"
-    /> 
-    <CardMethod :orderData="order" />-->
-    <PixMethod :orderData="order" />
+      v-if="this.method === 'boleto'"
+    />
+    <CardMethod :orderData="order" v-if="this.method === 'card'" />
+    <PixMethod :orderData="order" v-if="this.method === 'pix'" />
     <PaidModal v-show="paid" />
     <FailModal v-show="fail" />
   </div>
@@ -16,26 +21,26 @@
 
 <script>
 import OrderResume from "../components/OrderResume.vue";
-// import DefaultMethod from "../components/DefaultMethod.vue";
+import DefaultMethod from "../components/DefaultMethod.vue";
 import PaymentMethod from "../components/PaytmentMethod.vue";
 import PixMethod from "../components/PixMethod.vue";
 import PaidModal from "../components/PaidModal.vue";
 import FailModal from "../components/FailModal.vue";
-// import CardMethod from "../components/CardMethod.vue";
+import CardMethod from "../components/CardMethod.vue";
 export default {
   name: "CheckoutForm",
   components: {
     OrderResume,
-    // DefaultMethod,
+    DefaultMethod,
     PaymentMethod,
     PaidModal,
     FailModal,
-    // CardMethod,
+    CardMethod,
     PixMethod,
   },
   data() {
     return {
-      method: null,
+      method: "boleto",
       order: {},
       paid: false,
       fail: false,
@@ -62,6 +67,15 @@ export default {
       setTimeout(() => {
         this.fail = false;
       }, 5000);
+    },
+    methodBoleto() {
+      this.method = "boleto";
+    },
+    methodCard() {
+      this.method = "card";
+    },
+    methodPix() {
+      this.method = "pix";
     },
   },
   created() {
