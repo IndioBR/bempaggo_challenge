@@ -17,6 +17,7 @@ Acesse: https://github.com/IndioBR/bempaggo_challenge e clone o repositório.
 
 ```
   O primeiro comando irá executar um "Banco de dados" que é crucial para o funcionamento da aplicação.
+  
   O segundo comando irá executar o projeto frontend.
 
 ### 3:
