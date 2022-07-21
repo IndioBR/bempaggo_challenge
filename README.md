@@ -19,7 +19,14 @@ Acesse: https://github.com/IndioBR/bempaggo_challenge e clone o repositório.
 
 ```
 
+<<<<<<< HEAD
   O primeiro comando irá executar um "banco de dados", que é necessário para tudo funcionar bem.
+=======
+### Compiles and hot-reloads for development
+```
+yarn backend & yarn serve
+```
+>>>>>>> 8e9b43724a29fab47a79d92572638f6f3fc23fd8
 
   O segundo comando irá executar o projeto frontend.
 
