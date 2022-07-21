@@ -1,5 +1,3 @@
-# bempaggo_challenge
-
 ## Seja bem vindo ao Desafio FrontEnd BemPaggo.
 
 Meu nome é Jonatas, e aqui eu direi como você fará para executar meu projeto na sua máquina.
@@ -18,16 +16,7 @@ Acesse: https://github.com/IndioBR/bempaggo_challenge e clone o repositório.
   yarn serve
 
 ```
-
-<<<<<<< HEAD
-  O primeiro comando irá executar um "banco de dados", que é necessário para tudo funcionar bem.
-=======
-### Compiles and hot-reloads for development
-```
-yarn backend & yarn serve
-```
->>>>>>> 8e9b43724a29fab47a79d92572638f6f3fc23fd8
-
+  O primeiro comando irá executar um "Banco de dados" que é crucial para o funcionamento da aplicação.
   O segundo comando irá executar o projeto frontend.
 
 ### 3:
